@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { ChevronDown, LogOut, User } from 'lucide-react';
+import { ChevronDown, LogOut, User, Settings } from 'lucide-react';
 
 interface User {
   id: string;
@@ -80,6 +80,20 @@ const UserDropdown = ({ user, onLogout }: UserDropdownProps) => {
 
           <div className="py-2">
             <Link
+              href="/profile"
+              onClick={() => setIsDropdownOpen(false)}
+              className="flex items-center px-3 py-3 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 hover:text-blue-700 transition-all duration-200 group"
+            >
+              <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mr-3 group-hover:bg-blue-200 transition-colors duration-200">
+                <Settings className="w-4 h-4 text-blue-600" />
+              </div>
+              <div className="flex-1">
+                <p className="font-medium">Profile Settings</p>
+                <p className="text-xs text-gray-500">Manage your account</p>
+              </div>
+            </Link>
+
+            <Link
               href="/users"
               onClick={() => setIsDropdownOpen(false)}
               className="flex items-center px-3 py-3 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 hover:text-blue-700 transition-all duration-200 group"
@@ -92,7 +106,6 @@ const UserDropdown = ({ user, onLogout }: UserDropdownProps) => {
                 <p className="text-xs text-gray-500">Manage user accounts</p>
               </div>
             </Link>
-
 
             <div className="border-t border-gray-100 my-2 mx-3"></div>
             <button

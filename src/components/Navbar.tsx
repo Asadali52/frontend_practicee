@@ -24,9 +24,9 @@ const Navbar = () => {
   useEffect(() => {
     // Check authentication status on component mount
     const token = localStorage.getItem('token');
-    console.log("🚀 ~ Navbar ~ token:", token)
+    // console.log("🚀 ~ Navbar ~ token:", token)
     const userData = localStorage.getItem('user');
-    console.log("🚀 ~ Navbar ~ userData:", userData)
+    // console.log("🚀 ~ Navbar ~ userData:", userData)
 
     if (token && userData) {
       setIsAuthenticated(true);

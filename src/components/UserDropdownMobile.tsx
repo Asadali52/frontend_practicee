@@ -1,7 +1,8 @@
 'use client';
 
 import React from 'react';
-import { LogOut, User, } from 'lucide-react';
+import Link from 'next/link';
+import { LogOut, User, Settings } from 'lucide-react';
 
 interface User {
   id: string;
@@ -39,6 +40,20 @@ const UserDropdownMobile = ({ user, onLogout, onCloseMenu }: Props) => {
           </div>
         </div>
       </div>
+
+      <Link
+        href="/profile"
+        onClick={onCloseMenu}
+        className="flex items-center w-full px-4 py-3 rounded-xl text-base text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 hover:text-blue-700 transition-all duration-200 group"
+      >
+        <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-3 group-hover:bg-blue-200 transition-colors duration-200">
+          <Settings className="w-5 h-5 text-blue-600" />
+        </div>
+        <div className="flex-1 text-left">
+          <p className="font-medium">Profile Settings</p>
+          <p className="text-xs text-gray-500">Manage your account</p>
+        </div>
+      </Link>
 
       <button
         onClick={handleLogout}
