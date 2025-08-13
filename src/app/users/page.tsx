@@ -80,10 +80,15 @@ const formatDate = (date: string) =>
     day: 'numeric',
   });
 
-const getInitials = (first: string, last: string) =>`${first[0]}${last[0]}`.toUpperCase();
+const getInitials = (first: string, last: string) => `${first[0]}${last[0]}`.toUpperCase();
 
 const UsersPage = () => {
   const { users, status, error } = useUsers();
+  const [searchValue, setSearchValue] = useState("");
+
+  const filteredUsers = users.filter((user) => {
+    return `${user.firstName} ${user.lastName}`.toLowerCase().includes(searchValue.toLowerCase())
+  });
 
   if (status === 'loading') return <Loader />;
   if (status === 'error') return <ErrorUI error={error || ''} />;
@@ -91,7 +96,7 @@ const UsersPage = () => {
   return (
     <div className="min-h-screen py-12 px-4">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12">
+        <div className="text-center mb-6">
           <h1 className="text-4xl font-bold text-gray-900 mb-4 font-nunito">
             Our Community
           </h1>
@@ -100,11 +105,24 @@ const UsersPage = () => {
           </p>
         </div>
 
-        {users.length === 0 ? (
+        <div className='w-[350px] mx-auto mb-6'>
+          <input
+            id="email"
+            name="email"
+            type="search"
+            autoComplete="email"
+            className="w-full h-[42px] px-4 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:bg-transparent focus:border-gray-400 text-gray-900 placeholder-gray-300 transition-all duration-200 placeholder:font-[300]"
+            placeholder="Search by Name"
+            value={searchValue}
+            onChange={e => setSearchValue(e.target.value)}
+          />
+        </div>
+
+        {filteredUsers.length === 0 ? (
           <EmptyUI />
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {users.map((user) => (
+            {filteredUsers.map((user) => (
               <div
                 key={user.id}
                 className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 hover:-translate-y-1"
