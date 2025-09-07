@@ -137,10 +137,10 @@ const SignupPage = () => {
         src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2071&q=80"
         alt="Signup background"
         fill
-        className="object-cover absolute z-1"
+        className="object-cover absolute z-0"
         priority
       />
-      <div className="absolute z-2 inset-0 bg-black opacity-60" />
+      <div className="absolute z-10 inset-0 bg-black opacity-60" />
       <div className="relative inset-0 flex items-center justify-center sm:p-10 p-4 z-10">
         <div className="max-w-lg w-full space-y-8">
           <div className="bg-white rounded-2xl shadow-xl sm:p-8 p-5">
