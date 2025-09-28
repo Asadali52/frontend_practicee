@@ -40,17 +40,6 @@ const LoginPage = () => {
 
               <div className="space-y-6">
                 <GlobalInput
-                  id="password"
-                  label="Password"
-                  type="password"
-                  autoComplete="current-password"
-                  placeholder="Enter your password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  disabled={isLoading}
-                />
-
-                <GlobalInput
                   id="email"
                   label="Email Address"
                   type="email"
@@ -58,6 +47,16 @@ const LoginPage = () => {
                   placeholder="Enter your email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  disabled={isLoading}
+                />
+                <GlobalInput
+                  id="password"
+                  label="Password"
+                  type="password"
+                  autoComplete="current-password"
+                  placeholder="Enter your password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   disabled={isLoading}
                 />
 

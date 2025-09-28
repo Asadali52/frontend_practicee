@@ -26,7 +26,6 @@ const useLoginHook = () => {
       });
 
       const data = await response.json();
-      console.log("🚀 ~ handleSubmit ~ data:", data)
 
       if (!response.ok) {
         toast.error(data.error || 'Login failed');
@@ -38,9 +37,7 @@ const useLoginHook = () => {
       if (data.token) {
         localStorage.setItem('token', data.token);
         localStorage.setItem('user', JSON.stringify(data.user));
-
         window.dispatchEvent(new CustomEvent('authStateChanged'));
-
         router.push('/home');
       }
 
