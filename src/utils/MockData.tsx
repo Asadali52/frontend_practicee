@@ -521,4 +521,33 @@ export const teamMembers = [
     bio: 'Leading our engineering team to build scalable solutions.',
     image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
   }
-]; 
+];
+
+
+export const formatDate = (date: string) =>
+  new Date(date).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  }
+  );
+
+
+export const UsersErrorUI = ({ error }: { error: string }) => (
+  <div className="h-[calc(100vh-454px)] flex items-center justify-center">
+    <div className="text-center">
+      <div className="text-red-500 text-6xl mb-4">⚠️</div>
+      <h2 className="text-2xl font-bold text-gray-800 mb-2 font-nunito">Error</h2>
+      <p className="text-gray-600 font-nunito">{error}</p>
+    </div>
+  </div>
+);
+
+
+export const UsersEmptyUI = () => (
+  <div className="text-center py-12">
+    <div className="text-gray-400 text-6xl mb-4">👥</div>
+    <h3 className="text-2xl font-bold text-gray-800 mb-2 font-nunito">No Users Yet</h3>
+    <p className="text-gray-600 font-nunito">Be the first to join our community!</p>
+  </div>
+);
