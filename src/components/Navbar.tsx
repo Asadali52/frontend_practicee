@@ -93,9 +93,9 @@ const Navbar = () => {
         <div className="flex justify-between h-16 items-center">
           <Link href="/home" className="flex-shrink-0 flex items-center">
             <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">A</span>
+              <span className="text-white font-bold text-sm">D</span>
             </div>
-            <span className="ml-2 text-xl font-bold text-gray-900">AppName</span>
+            <span className="ml-2 text-xl font-bold text-gray-900">DevForce</span>
           </Link>
 
           <div className="hidden lg:flex items-center space-x-3">

@@ -97,9 +97,9 @@ const Footer = () => {
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center mb-4">
               <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">A</span>
+                <span className="text-white font-bold text-sm">D</span>
               </div>
-              <span className="ml-2 text-xl font-bold text-gray-900">AppName</span>
+              <span className="ml-2 text-xl font-bold text-gray-900">DevForce</span>
             </div>
             <p className="text-gray-600 mb-4 max-w-md">
               Building amazing experiences for users around the world. Join us in creating the future of digital innovation.
