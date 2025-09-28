@@ -5,6 +5,7 @@ import Loader from '@/components/Loader';
 import useUserHook from '@/hooks/useUserHook';
 import { UsersEmptyUI, UsersErrorUI } from '@/utils/MockData';
 import UserCard from '@/components/UserCard';
+import GlobalInput from '@/components/GlobalInput';
 
 const UsersPage = () => {
   const {
@@ -32,15 +33,14 @@ const UsersPage = () => {
         </div>
 
         <div className='w-[350px] mx-auto mb-6'>
-          <input
-            id="email"
-            name="email"
-            type="search"
-            autoComplete="email"
-            className="w-full h-[42px] px-4 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:bg-transparent focus:border-gray-400 text-gray-900 placeholder-gray-300 transition-all duration-200 placeholder:font-[300]"
-            placeholder="Search by Name"
+          <GlobalInput
+            id="searcg"
+            label=""
+            type=""
+            autoComplete=""
+            placeholder="Search users by name"
             value={searchValue}
-            onChange={e => setSearchValue(e.target.value)}
+            onChange={(e) => setSearchValue(e.target.value)}
           />
         </div>
 

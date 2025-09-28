@@ -1,63 +1,21 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import toast from 'react-hot-toast';
 import { Facebook, Twitter } from 'lucide-react';
-import { useRouter } from 'next/navigation';
+import useLoginHook from '@/hooks/useLoginHook';
+import GlobalInput from '@/components/GlobalInput';
 
 const LoginPage = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const router = useRouter();
 
-  const handleSubmit = async () => {
-
-    if (!email || !password) {
-      toast.error('Please fill in all fields');
-      return;
-    }
-
-    setIsLoading(true);
-
-    try {
-      const response = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-      });
-
-      const data = await response.json();
-      // console.log("🚀 ~ handleSubmit ~ data:", data);
-
-      if (!response.ok) {
-        toast.error(data.error || 'Login failed');
-        return;
-      }
-
-      toast.success('Login successful!');
-      
-      if (data.token) {
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('user', JSON.stringify(data.user));
-        // console.log("🚀 ~ handleSubmit ~ token:", data.token);
-        
-        // Dispatch custom event to notify navbar of authentication change
-        window.dispatchEvent(new CustomEvent('authStateChanged'));
-        
-        // Redirect to home page
-        router.push('/home');
-      }
-
-    } catch (error) {
-      console.error('Login error:', error);
-      toast.error('An error occurred during login');
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  const {
+    email,
+    setEmail,
+    isLoading,
+    password,
+    setPassword,
+    handleSubmit
+  } = useLoginHook();
 
   return (
     <div className="min-h-screen relative">
@@ -81,39 +39,27 @@ const LoginPage = () => {
               </div>
 
               <div className="space-y-6">
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                    Email address
-                  </label>
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    autoComplete="email"
-                    className="w-full h-[42px] px-4 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:bg-transparent focus:border-gray-400 text-gray-900 placeholder-gray-300 transition-all duration-200 placeholder:font-[300]"
-                    placeholder="Enter your email"
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
-                    disabled={isLoading}
-                  />
-                </div>
+                <GlobalInput
+                  id="password"
+                  label="Password"
+                  type="password"
+                  autoComplete="current-password"
+                  placeholder="Enter your password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  disabled={isLoading}
+                />
 
-                <div>
-                  <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
-                    Password
-                  </label>
-                  <input
-                    id="password"
-                    name="password"
-                    type="password"
-                    autoComplete="current-password"
-                    className="w-full h-[42px] px-4 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:bg-transparent focus:border-gray-400 text-gray-900 placeholder-gray-300 transition-all duration-200 placeholder:font-[300]"
-                    placeholder="Enter your password"
-                    value={password}
-                    onChange={e => setPassword(e.target.value)}
-                    disabled={isLoading}
-                  />
-                </div>
+                <GlobalInput
+                  id="email"
+                  label="Email Address"
+                  type="email"
+                  autoComplete="email"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  disabled={isLoading}
+                />
 
                 <div className="flex items-center justify-between">
                   <div className="flex items-center">
