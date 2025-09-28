@@ -1,10 +1,11 @@
 'use client';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { X } from 'lucide-react';
 import UserDropdown from './UserDropdown';
 import UserDropdownMobile from './UserDropdownMobile';
+import useLogoutHook from '@/hooks/useLogoutHook';
 
 interface User {
   id: string;
@@ -19,7 +20,6 @@ const Navbar = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState<User | null>(null);
   const pathname = usePathname();
-  const router = useRouter();
 
   useEffect(() => {
     // Check authentication status on component mount
@@ -59,18 +59,7 @@ const Navbar = () => {
     };
   }, []);
 
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    setIsAuthenticated(false);
-    setUser(null);
-    setIsMenuOpen(false);
-
-    // Dispatch custom event to notify other components of authentication change
-    window.dispatchEvent(new CustomEvent('authStateChanged'));
-
-    router.push('/login');
-  };
+  const { handleLogout } = useLogoutHook();
 
   const navLinks = [
     { href: '/home', label: 'Home' },

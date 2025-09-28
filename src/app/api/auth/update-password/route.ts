@@ -40,6 +40,7 @@ export async function PUT(request: NextRequest) {
     try {
       decoded = jwt.verify(token, process.env.JWT_SECRET!) as { userId: string; email: string };
     } catch (error) {
+        console.error('JWT verification failed:', error);
       return NextResponse.json(
         { error: 'Invalid or expired token' },
         { status: 401 }
