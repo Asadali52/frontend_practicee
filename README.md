@@ -41,11 +41,11 @@ npm install
 
 Create a `.env.local` file in the root directory:
 
-```env
-MONGODB_URI=mongodb://localhost:27017/auth-app
-JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
-NEXTAUTH_SECRET=your-nextauth-secret-key
-```
+MONGODB_URI=mongodb+srv://frontend-practice-user-me:20yXRux2NB6IeQ4W@cluster0.fjgkiz1.mongodb.net/frontend-practicee-user?retryWrites=true&w=majority&appName=Cluster0
+JWT_SECRET=Zf9zKk1jVjHhK2Oa8J1kXc2jL9q8Tz3u
+NEXTAUTH_SECRET=F7g9Yp2mNs4hQv6kJ3dL1xWc8zR2pT5b
+NEXTAUTH_URL=http://localhost:3000
+
 
 **Important**: 
 - Replace `your-super-secret-jwt-key-change-this-in-production` with a strong secret key
